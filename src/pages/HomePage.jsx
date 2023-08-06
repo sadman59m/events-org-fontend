@@ -1,5 +1,5 @@
 const HomePage = () => {
-  return <h1>Welcome to React Router</h1>;
+  return <h1>Home Page</h1>;
 };
 
 export default HomePage;

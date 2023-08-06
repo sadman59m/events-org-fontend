@@ -1,0 +1,21 @@
+.header {
+  max-width: 100%;
+  margin: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+  color: white;
+}
+
+.list a {
+  text-decoration: none;
+  color: white;
+}
