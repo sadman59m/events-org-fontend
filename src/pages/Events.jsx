@@ -1,22 +1,25 @@
-import { useLoaderData } from "react-router-dom";
+/* eslint-disable no-unused-vars */
+import { useLoaderData, defer, Await } from "react-router-dom";
+import { Suspense } from "react";
 
 import EventsList from "../components/EventsList";
 
 function EventsPage() {
-  const data = useLoaderData();
-  const events = data.events;
+  const { events } = useLoaderData();
 
+  //await will be executed once the events/ events data been received
   return (
-    <>
-      <EventsList events={events} />
-    </>
+    <Suspense fallback={<p style={{ textAlign: "center" }}>...Loading</p>}>
+      <Await resolve={events}>
+        {(loadedEvents) => <EventsList events={loadedEvents} />}
+      </Await>
+    </Suspense>
   );
 }
 
 export default EventsPage;
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const loader = async () => {
+async function eventsLoader() {
   const response = await fetch("http://localhost:8080/events/");
 
   if (!response.ok) {
@@ -24,7 +27,15 @@ export const loader = async () => {
       status: 500,
     });
   } else {
-    return response;
+    const resData = await response.json();
+    return resData.events;
   }
-  // setIsLoading(false);
+}
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const loader = async () => {
+  return defer({
+    // takes a object. will be exexuted by react router
+    events: eventsLoader(), //events key holds the events data
+  });
 };
