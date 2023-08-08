@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useNavigate, useNavigation, Form } from "react-router-dom";
+import {
+  useNavigate,
+  useNavigation,
+  useActionData,
+  Form,
+} from "react-router-dom";
 
 import classes from "./EventForm.module.css";
 
 function EventForm({ method, event }) {
   const navigate = useNavigate();
+  const data = useActionData(); // data coming from res status 422 validtion failed server
   const isSubmitting = useNavigation().state === "submitting";
 
   function cancelHandler() {
@@ -14,6 +20,13 @@ function EventForm({ method, event }) {
 
   return (
     <Form method="post" className={classes.form}>
+      {data && data.errors && (
+        <ul>
+          {Object.values(data.errors).map((err) => (
+            <li key={err}>{err}</li>
+          ))}
+        </ul>
+      )}
       <p>
         <label htmlFor="title">Title</label>
         <input
