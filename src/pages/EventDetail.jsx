@@ -20,7 +20,9 @@ export default EventDetailPage;
 
 export async function loader({ request, params }) {
   const id = params.eventId;
-  const response = await fetch("http://localhost:8080/events/" + id);
+  const response = await fetch(
+    "https://event-orgs-backend.onrender.com/events/" + id
+  );
   if (!response.ok) {
     throw json({ message: "Could not fetch data" }, { status: 500 });
   }
@@ -31,12 +33,15 @@ export async function action({ params, request }) {
   const eventId = params.eventId;
   const token = getToken();
 
-  const response = await fetch("http://localhost:8080/events/" + eventId, {
-    method: request.method,
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  });
+  const response = await fetch(
+    "https://event-orgs-backend.onrender.com/events/" + eventId,
+    {
+      method: request.method,
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
 
   if (!response.ok) {
     throw response;

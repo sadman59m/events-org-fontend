@@ -92,10 +92,10 @@ export async function action({ request, params }) {
 
   const token = getToken();
 
-  let url = "http://localhost:8080/events";
+  let url = "https://event-orgs-backend.onrender.com/events";
 
   if (method === "PATCH") {
-    url = "http://localhost:8080/events/" + eventId;
+    url = "https://event-orgs-backend.onrender.com/events/" + eventId;
   }
 
   const eventData = {

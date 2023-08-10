@@ -20,7 +20,9 @@ function EventsPage() {
 export default EventsPage;
 
 async function eventsLoader() {
-  const response = await fetch("http://localhost:8080/events/");
+  const response = await fetch(
+    "https://event-orgs-backend.onrender.com/events/"
+  );
 
   if (!response.ok) {
     throw new Response(JSON.stringify({ message: "Could not fetch data" }), {

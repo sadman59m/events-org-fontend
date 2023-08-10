@@ -26,13 +26,16 @@ export async function action({ request }) {
     throw json({ message: "invalid request", status: 422 }, { status: 422 });
   }
 
-  const response = await fetch("http://localhost:8080/" + mode, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(authData),
-  });
+  const response = await fetch(
+    "https://event-orgs-backend.onrender.com/" + mode,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(authData),
+    }
+  );
 
   if (!response.ok) {
     return response;
