@@ -1,8 +1,12 @@
-# React + Vite
+# Events Org
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+chekcout: https://events-org-fontend.vercel.app/
 
-Currently, two official plugins are available:
+# A single-page application lets users browse, create, edit, and delete events.
+- Browse events.
+- login to create your own events.
+- edit or delete your own events.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Stack used
+Front-end: ReactJs, react-router-dom
+Backend: Node.js, Express
