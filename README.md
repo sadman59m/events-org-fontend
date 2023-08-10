@@ -8,5 +8,5 @@ chekcout: https://events-org-fontend.vercel.app/
 - edit or delete your own events.
 
 # Stack used
-Front-end: ReactJs, react-router-dom
-Backend: Node.js, Express
+- Front-end: ReactJs, react-router-dom
+- Backend: Node.js, Express
