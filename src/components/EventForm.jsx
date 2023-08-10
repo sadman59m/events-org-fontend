@@ -10,6 +10,7 @@ import {
   redirect,
 } from "react-router-dom";
 
+import { getToken } from "../util/auth";
 import classes from "./EventForm.module.css";
 
 function EventForm({ method, event }) {
@@ -89,6 +90,8 @@ export async function action({ request, params }) {
   const method = request.method;
   const eventId = params.eventId;
 
+  const token = getToken();
+
   let url = "http://localhost:8080/events";
 
   if (method === "PATCH") {
@@ -106,12 +109,13 @@ export async function action({ request, params }) {
     method: method,
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
     },
     body: JSON.stringify(eventData),
   });
 
-  if (response.status === 422) {
-    return response;
+  if (response.status === 422 || response.status === 401) {
+    throw response;
   }
 
   if (!response.ok) {

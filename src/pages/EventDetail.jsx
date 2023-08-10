@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 import { Link, json, useRouteLoaderData, redirect } from "react-router-dom";
+
+import { getToken } from "../util/auth";
 import EventItem from "../components/EventItem";
 
 function EventDetailPage() {
@@ -27,17 +29,17 @@ export async function loader({ request, params }) {
 
 export async function action({ params, request }) {
   const eventId = params.eventId;
+  const token = getToken();
+
   const response = await fetch("http://localhost:8080/events/" + eventId, {
     method: request.method,
+    headers: {
+      Authorization: "Bearer " + token,
+    },
   });
 
   if (!response.ok) {
-    throw json(
-      { message: "Could not delete event." },
-      {
-        status: 500,
-      }
-    );
+    throw response;
   }
   return redirect("/events");
 }

@@ -22,13 +22,9 @@ export async function action({ request }) {
     password: data.get("password"),
   };
 
-  console.log(authData);
-
   if (mode !== "login" && mode !== "signup") {
     throw json({ message: "invalid request", status: 422 }, { status: 422 });
   }
-
-  console.log(mode);
 
   const response = await fetch("http://localhost:8080/" + mode, {
     method: "POST",
@@ -45,5 +41,11 @@ export async function action({ request }) {
   if (response.status === 422 || response.status === 401) {
     return response;
   }
-  return redirect("/");
+  const resData = await response.json();
+  const token = resData.token;
+  localStorage.setItem("token", token);
+  const expiration = new Date();
+  expiration.setHours(expiration.getHours() + 1);
+  localStorage.setItem("expiration", expiration.toISOString());
+  return redirect("/events");
 }
