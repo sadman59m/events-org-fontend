@@ -5,7 +5,7 @@
 # Live site
 Checkout live: https://events-org-fontend.vercel.app/
 - Note: The backend is hosted on render.com which makes the server inactive after 15 minutes of inactivity. So for the
-  first time, you are logging in, it may take up to 30s to log in as the render.com take 30s to reactivate the server.
+  first time, you are logging in, it may take up to 30s to log in as the render.com take 30s to reactivate the server. 
   Once reactivated, there won't be any delay anymore.
 - For Quick Login:
 - email: test@test.com
