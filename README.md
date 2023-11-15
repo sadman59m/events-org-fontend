@@ -2,6 +2,7 @@
 - A multiuser event management single-page application where users can view events and create, update, and delete events.
 - The main purpose of this project was to practice building a Single Page Application using React and react-router, and the backend part using node.js, Express. Created a Dummy backend where information is stored in a JSON file.
 
+<h2>Backend Poriton: https://github.com/sadman59m/events-org-backend</h2>
 # Live site
 Checkout live: https://events-org-fontend.vercel.app/
 - Note: The backend is hosted on render.com which makes the server inactive after 15 minutes of inactivity. So for the
